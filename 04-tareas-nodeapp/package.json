@@ -1,0 +1,22 @@
+{
+  "name": "04-tareas-nodeapp",
+  "version": "1.0.0",
+  "description": "aplicación de consola que maneja tareas. Curso Fenrnado hERRERA",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tareas",
+    "node",
+    "stdin",
+    "stdout"
+  ],
+  "author": "Javier Vargas",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "inquirer": "^8.2.4",
+    "uuid": "^8.3.2"
+  }
+}
