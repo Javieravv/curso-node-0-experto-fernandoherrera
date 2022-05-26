@@ -1,0 +1,21 @@
+{
+  "name": "06-webserver",
+  "version": "1.0.0",
+  "description": "aprendiendo a crear web server con node",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "http",
+    "web",
+    "server"
+  ],
+  "author": "Javier Vargas aprendiendo de Fernando Herrera",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "hbs": "^4.2.0"
+  }
+}
