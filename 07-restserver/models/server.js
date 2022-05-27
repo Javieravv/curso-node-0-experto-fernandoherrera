@@ -9,8 +9,9 @@ class Server {
         // aquí creamos la app de express
         this.app = express()
         this.port = process.env.PORT
+        
         this.usersRoutePath = '/api/usuarios'
-
+        this.authPath = '/api/auth'
         // Conexión a la Bd
         this.conectarDb()
 
@@ -18,7 +19,6 @@ class Server {
         this.middlewares()
 
         // Rutas de la aplicación
-
         this.routes()
     }
 
@@ -34,15 +34,15 @@ class Server {
 
         // lectura y parseo del body, para admitir jsonp
         this.app.use ( express.json())
-        
-        // para la carpeta pública.
        
+        // para la carpeta pública.
         this.app.use(express.static('public'))
     }
 
     // para definir las rutas.
     routes () {
         // como están en otro archivo se hace uso de un middleware
+        this.app.use (this.authPath, require('../routes/authRoutes'))
         this.app.use (this.usersRoutePath, require('../routes/userRoutes'))
        
     }

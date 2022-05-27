@@ -34,7 +34,6 @@ const userGet = async (req, res) => {
 const userPut = async (req, res) => {
     // Lo que se solicita viene en la request
     const { userId } = req.params
-    console.log ( userId)
     const { _id, password, google, ...restoUsuario} = req.body
 
     if ( password ) {
@@ -76,15 +75,9 @@ const userPost = async (req, res) => {
     // Si se envían campos que no estén en el modelo no se grabarán
     const usuario = new Usuario ( { nombre, correo, password, rol } )
 
-    // verificar correo a ver si existe
-
-
     // encriptar contraseña
     const salt = bcryptjs.genSaltSync()
     usuario.password = bcryptjs.hashSync ( password, salt )
-
-
-    // guardar en base de datos
 
     // grabamos el usuario con base en el modelo que fue creado.
     await usuario.save ()
@@ -95,21 +88,17 @@ const userPost = async (req, res) => {
 }
 
 const userDelete = async (req, res) => {
+    // para poder borrar este usuario la ruta debe estar protegida con JWT
+    // Para ello se crea un middleware en la ruta.
 
     const { userId } = req.params
-
-    // Borrado físico de la base de datos. No recomendado!!!.
-    // const usuario = await Usuario.findByIdAndDelete(userId)
-
-    // Se cambia el estado del usuario.
     const usuario = await Usuario.findByIdAndUpdate(userId, { estado: false })
-
 
     res.json({
         ok: true,
         message: "Controlador - Petición DELETE a la app",
         userId,
-        usuario
+        usuario,
     })
 }
 

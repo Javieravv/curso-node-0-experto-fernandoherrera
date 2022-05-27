@@ -10,7 +10,11 @@ const { userGet,
     userPut1
  } = require('../controllers/userController')
 const { esRoleValido, existeEmail, existeUsuarioPorId } = require('../helpers/db-validators')
-const { validarCampos } = require('../middlewares/validar-campos')
+// const { validarCampos } = require('../middlewares/validar-campos')
+// const { validarJWT } = require('../middlewares/validar-jwt')
+// const { esAdminRole, tieneRole } = require('../middlewares/validar-roles')
+const { validarCampos, tieneRole, validarJWT } = require ('../middlewares')
+
 
 const router = Router()
 
@@ -40,7 +44,11 @@ router.post('/', [
 ], userPost)
 
 // Borrar un usuario
+// para borrar debe estar la ruta protegida con un JWT. Se usa un middleware
 router.delete('/:userId',[
+    validarJWT,
+    // esAdminRole,
+    tieneRole ('ADMIN_ROLE', 'VENTAS_ROLE'),
     check('userId', 'No es un Id válido').isMongoId(),
     check('userId').custom ( (userId) => existeUsuarioPorId (userId) ),
     validarCampos
