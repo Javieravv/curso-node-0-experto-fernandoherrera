@@ -4,16 +4,13 @@ const jwt = require ('jsonwebtoken')
 const Usuario = require ('../models/usuario')
 
 const validarJWT = async ( req, res = response, next) => {
-
     const token = req.header ('x-token')
-    console.log ( token )
 
     if ( !token ) { 
         return res.status(401).json({
             msg: 'No hay una credencial - JWTG válido.'
         })
     }
-
     try {
         const { uid } = jwt.verify ( token, process.env.SECRETORPUBLICKEY )
         // leer el usuario que corresponde al uid y se almacena en la request
@@ -33,8 +30,6 @@ const validarJWT = async ( req, res = response, next) => {
             })
         }
         
-
-
         req.usuarioAutenticado = usuarioAutenticado
         next ()
     } catch (error) {

@@ -24,10 +24,10 @@ const esAdminRole = (req, res = response, next) => {
 
 const tieneRole = ( ...roles  ) => {
     return ( req, res = response, next ) => {
-        console.log ( roles, req.usuarioAutenticado.rol)
+        // Si en la request no está el usuario autenticado
         if ( !req.usuarioAutenticado ) {
             return res.status(500).json({ 
-                msg: 'Se quiere verificar el fol sin validar el token del usuario primero'
+                msg: 'Se quiere verificar el rol sin validar el token del usuario primero'
             })
         }
 

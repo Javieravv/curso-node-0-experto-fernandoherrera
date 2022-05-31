@@ -10,9 +10,6 @@ const { userGet,
     userPut1
  } = require('../controllers/userController')
 const { esRoleValido, existeEmail, existeUsuarioPorId } = require('../helpers/db-validators')
-// const { validarCampos } = require('../middlewares/validar-campos')
-// const { validarJWT } = require('../middlewares/validar-jwt')
-// const { esAdminRole, tieneRole } = require('../middlewares/validar-roles')
 const { validarCampos, tieneRole, validarJWT } = require ('../middlewares')
 
 
