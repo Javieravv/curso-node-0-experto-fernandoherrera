@@ -30,13 +30,14 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script>
         function handleCredentialResponse(response) {
-
-
-            console.log ('GOOGLE TOKEN - ID_TOKEN ',response.credential);
             const body = { id_token: response.credential}
 
+            let url = ( window.location.hostname.includes('localhost') )
+                    ? 'http://localhost:8080/api/auth/google'
+                    : 'https://cafe-api-javv.herokuapp.com/api/auth/google'
+
             // Llamamos el endpoint y le enviaos el token
-            fetch ('http://localhost:8080/api/auth/google',{
+            fetch ( url, {
                 method: 'POST',
                 headers: {
                     'Content-Type':'application/json'
@@ -45,20 +46,17 @@
             })
                 .then ( resp => resp.json ())
                 .then ( resp => {
-                    console.log ( resp )
                     localStorage.setItem( 'email', resp.usuario.correo)
                 } )
                 .catch ( console.warn)
-
         }
 
         const button = document.getElementById('google_signout')
         // no funciona!!!!
         button.onclick = () => {
-            console.log ( google.accounts.id, 'EMAIL...', localStorage.getItem( 'email'))
+            // console.log ( google.accounts.id, 'EMAIL...', localStorage.getItem( 'email'))
             google.accounts.id.disableAutoSelect();
             google.accounts.id.revoke ( localStorage.getItem( 'email', done =>{
-                console.log ('BORRAMOS SESIÓN...')
                 localStorage.clear()
                 location.reload()
             }))

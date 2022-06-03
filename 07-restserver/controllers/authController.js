@@ -56,7 +56,6 @@ const authLoginGoogle = async ( req, res = response) => {
     try {
         // const googleUser = await googleVerify( id_token )
         const { correo, nombre, img } = await googleVerify( id_token )
-        console.log ( correo, nombre, img )
 
         // verificar correo, password
         let usuario = await Usuario.findOne( { correo })

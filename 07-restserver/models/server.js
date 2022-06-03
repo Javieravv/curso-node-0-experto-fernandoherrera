@@ -10,8 +10,18 @@ class Server {
         this.app = express()
         this.port = process.env.PORT
         
-        this.usersRoutePath = '/api/usuarios'
-        this.authPath = '/api/auth'
+        // this.usersRoutePath = '/api/usuarios'
+        // this.authPath = '/api/auth'
+        // this.authPath = '/api/categorias'
+        // mejor de esta manera
+        this.paths = {
+            auth        : '/api/auth',
+            categories  : '/api/categorias',
+            productos   : '/api/productos',
+            search      : '/api/buscar'  ,
+            users       : '/api/usuarios',
+        }
+
         // Conexión a la Bd
         this.conectarDb()
 
@@ -42,9 +52,11 @@ class Server {
     // para definir las rutas.
     routes () {
         // como están en otro archivo se hace uso de un middleware
-        this.app.use (this.authPath, require('../routes/authRoutes'))
-        this.app.use (this.usersRoutePath, require('../routes/userRoutes'))
-       
+        this.app.use (this.paths.auth, require('../routes/authRoutes'))
+        this.app.use (this.paths.categories, require('../routes/categoriesRoutes'))
+        this.app.use (this.paths.productos, require('../routes/productosRoutes'))
+        this.app.use (this.paths.search, require('../routes/buscarRoutes'))
+        this.app.use (this.paths.users, require('../routes/userRoutes'))
     }
 
     // iniciar servidor
