@@ -46,6 +46,7 @@
             })
                 .then ( resp => resp.json ())
                 .then ( resp => {
+                    alert ('PROPIEDAD CORREO: ', resp.usuario.correo)
                     localStorage.setItem( 'email', resp.usuario.correo)
                 } )
                 .catch ( console.warn)
