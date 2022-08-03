@@ -75,7 +75,8 @@ class Server {
 
     // Configuración para los sockets
     sockets() {
-        this.io.on('connection', socketController )
+        // importante para el tema de saber los usuarios conectados.
+        this.io.on('connection', ( socket ) => socketController (socket, this.io) )
     }
 
     // ponemos a escuchar el servidor de sockets, no el servidor de express

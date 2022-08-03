@@ -45,7 +45,7 @@ const login = async(req, res = response) => {
         })
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         res.status(500).json({
             msg: 'Hable con el administrador'
         });
@@ -56,7 +56,7 @@ const login = async(req, res = response) => {
 const googleSignin = async(req, res = response) => {
 
     const { id_token } = req.body;
-    console.log ('EL TOKEN DE GOOGLE ES: ', id_token)
+    // console.log ('EL TOKEN DE GOOGLE ES: ', id_token)
    
     try {
         const { correo, nombre, img } = await googleVerify( id_token );
@@ -86,7 +86,7 @@ const googleSignin = async(req, res = response) => {
         }
 
         // Generar el JWT
-        console.log ('EL ID DEL USUARIO PARA GENERAR TOKEN ES : ', usuario.id)
+        // console.log ('EL ID DEL USUARIO PARA GENERAR TOKEN ES : ', usuario.id)
         const token = await generarJWT( usuario.id );
         
         res.json({
