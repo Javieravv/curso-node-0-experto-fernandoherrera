@@ -69,6 +69,7 @@ export const putUsuario = async ( req: Request, res: Response) => {
 
         await usuario.update ( body )
         res.json( usuario )
+        
     } catch (error) {
         console.log ( error )
         res.status(500).json({
@@ -111,9 +112,6 @@ export const deleteUsuario = async ( req: Request, res: Response) => {
         id
     })
 }
-
-
-
 
 
 

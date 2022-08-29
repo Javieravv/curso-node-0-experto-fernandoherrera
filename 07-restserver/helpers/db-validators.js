@@ -22,7 +22,6 @@ const existeUsuarioPorId = async ( userId = '') => {
     if ( !existeUsuario ) {
         throw new Error (`El usuario con Id ${ userId } no está registrado en la Bd`)
     }
-
 }
 
 const existeCategoria = async ( categoriaId = '') => {
